@@ -1,0 +1,16 @@
+<mat-form-field appearance="fill">
+  <mat-label>Data nasterii</mat-label>
+  <input matInput [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<br>
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Data deplasarii</mat-label>
+  <input matInput   [matDatepicker]="datepicker"  [formControl]="date1" [min]="date2">
+  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+  <mat-datepicker  #datepicker></mat-datepicker>
+</mat-form-field>
+
