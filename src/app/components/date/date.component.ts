@@ -14,9 +14,5 @@ date1 = new FormControl(new Date());
 date2 = new Date();
 
 
-  ngOnInit():void {
- 
-    
-  }
-
+  ngOnInit(): void {}
 }

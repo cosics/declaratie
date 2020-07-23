@@ -2,62 +2,92 @@
 
   <app-header></app-header>
   <br>
-  <h1>{{ date | uppercase }}</h1>
-
-  <!-- <app-nume></app-nume>  -->
-  
-  <!-- <app-date></app-date> -->
+  <h1>{{ datePers | uppercase }}</h1>
 
 
 
-  <form (ngSubmit)="onSubmit(user)" [formGroup]="form">
+  <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <div class="example-container">
-      <mat-form-field appearance="fill">
-        <mat-label for="lastName">Nume</mat-label>
-        <input matInput type="text" id="lastName" class="form-control" formControlName="lastName">
-       </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label for="lastName">Nume</mat-label>
+      <input matInput  type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.lastName.errors }" />
+      <div *ngIf="submitted && registerForm.lastName.errors" class="invalid-feedback">
+          <div *ngIf="lastName.touched && lastName.errors?.required">Introduceti numele de familie.</div>
+      </div>
+    </mat-form-field>
     </div>
-  
     <div class="example-container">
       <mat-form-field appearance="fill">
-        <mat-label for="firstName">Prenume</mat-label>
-        <input matInput type="text" id="firstName" class="form-control" formControlName="firstName">
-       </mat-form-field>
-    </div>
-<!--   
-    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
-      Submit
-    </button> -->
-  
+        <mat-label for="lastName">Prenume</mat-label>
+        <input matInput  type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.lastName.errors }" />
+        <div *ngIf="submitted && registerForm.lastName.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.lastName.errors.required">Introduceti prenumele.</div>
+        </div>
+      </mat-form-field>
+      </div>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Data nasterii</mat-label>
+      <input matInput [matDatepicker]="date" formControlName="date1">
+      <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+      <mat-datepicker #date></mat-datepicker>
+    </mat-form-field>
 
+    <br>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Data deplasarii</mat-label>
+      <input matInput   [matDatepicker]="datepicker"  formControlName="date2" [min]="dateCurrent">
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker  #datepicker></mat-datepicker>
+    </mat-form-field>
+
+    <br>
 
   <label id="example-radio-group-label"><b>Alegeti motivul deplasarii : </b></label>
     <mat-radio-group
     formControlName="radio"
       aria-labelledby="example-radio-group-label"
       class="example-radio-group"
-      [FormControl]="motiv">
+      >
       <mat-radio-button class="example-radio-button" *ngFor="let one of motiveList" [value]="one" >
     {{one}}
       </mat-radio-button>
     </mat-radio-group>
     
+    <div><b> Motivul deplasarii este : </b> {{registerForm .value.radio}}</div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
-      Submit
-    </button>
-   
+    <div class="text-center">
+      <button class="btn btn-primary mr-1">Register</button>
+      <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+  </div>
+    <br />
+  </form>
 
-  
-<div><b> Motivul deplasarii este : </b> {{motiv}}</div>
-</form>
   <br>
+
   <h3>{{ explicatie | uppercase }}</h3>
-  <app-descriere></app-descriere>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Detalii</mat-label>
+    <input matInput #message maxlength="30" placeholder="Ai putea sa stai si acasa."  formControlName="descriere"  >
+    <mat-hint align="start"><strong>Explica unde mergi si de ce</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 30</mat-hint>
+  </mat-form-field>
+ 
   <br>
   <br>
 
   
 </div>  
+
+
+
+    <!-- <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+      Submit
+    </button>
+
+    <button type="reset" class="btn btn-primary" [disabled]="!form.valid">
+      Reset
+    </button> -->
