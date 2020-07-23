@@ -37,24 +37,31 @@ export class AppComponent implements OnInit {
 
     this.registerForm  = this.formBuilder.group({
       lastName: [
-        null,
-        [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(1), Validators.maxLength(15)]],
+            null,
+            [Validators.required, 
+            Validators.pattern('[a-zA-Z ]*'), 
+            Validators.minLength(1), 
+            Validators.maxLength(15)]],
       firstName: [
-        null,
-        [Validators.required, Validators.pattern('[a-zA-Z ]*')],
+            null,
+            [Validators.required, 
+            Validators.pattern('[a-zA-Z ]*')],
       ],
       radio: [
-        '',
-        [Validators.required]],
+             '',
+            [Validators.required]],
       date1: [
-        '',
-        [Validators.required]],
+            '',
+            [Validators.required]],
       date2: [
-        new Date(),
-        [Validators.required]],
+            new Date(),
+            [Validators.required]],
       descriere: [
             null,
-            [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(1), Validators.maxLength(30)]],
+            [Validators.required, 
+            Validators.pattern('[a-zA-Z ]*'), 
+            Validators.minLength(1), 
+            Validators.maxLength(30)]],
     });
 }
 
