@@ -58,12 +58,6 @@
     
     <div><b> Motivul deplasarii este : </b> {{registerForm .value.radio}}</div>
 
-    <div class="text-center">
-      <button class="btn btn-primary mr-1">Register</button>
-      <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
-  </div>
-    <br />
-  </form>
 
   <br>
 
@@ -75,11 +69,12 @@
     <mat-hint align="start"><strong>Explica unde mergi si de ce</strong> </mat-hint>
     <mat-hint align="end">{{message.value.length}} / 30</mat-hint>
   </mat-form-field>
- 
-  <br>
-  <br>
-
-  
+  <br><br><br>
+  <div>
+    <button class="btn btn-primary mr-1">Register</button>
+    <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+</div>
+</form>
 </div>  
 
 

@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   title: string = 'Declaratie pe proprie raspundere';
   datePers: string = 'Date personale';
   explicatie: string = 'Acum explici motivul deplasarii';
+  dateCurrent = new Date();
 
 
   motiv: string;
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit {
 
 
 
-onSubmit() {
+onSubmit(): void  {
     this.submitted = true;
 
     // stop here if form is invalid
@@ -71,7 +72,7 @@ onSubmit() {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
 }
 
-onReset() {
+onReset(): void  {
     this.submitted = false;
     this.registerForm.reset();
 }
