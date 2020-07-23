@@ -38,13 +38,13 @@ export class AppComponent implements OnInit {
     this.registerForm  = this.formBuilder.group({
       lastName: [
             null,
-            [Validators.required, 
-            Validators.pattern('[a-zA-Z ]*'), 
-            Validators.minLength(1), 
+            [Validators.required,
+            Validators.pattern('[a-zA-Z ]*'),
+            Validators.minLength(1),
             Validators.maxLength(15)]],
       firstName: [
             null,
-            [Validators.required, 
+            [Validators.required,
             Validators.pattern('[a-zA-Z ]*')],
       ],
       radio: [
@@ -58,9 +58,9 @@ export class AppComponent implements OnInit {
             [Validators.required]],
       descriere: [
             null,
-            [Validators.required, 
-            Validators.pattern('[a-zA-Z ]*'), 
-            Validators.minLength(1), 
+            [Validators.required,
+            Validators.pattern('[a-zA-Z ]*'),
+            Validators.minLength(1),
             Validators.maxLength(30)]],
     });
 }
