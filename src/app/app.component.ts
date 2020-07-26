@@ -6,13 +6,16 @@ import {
   FormControl,
 } from '@angular/forms';
 
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-
   registerForm: FormGroup;
   submitted = false;
 
@@ -31,6 +34,10 @@ export class AppComponent implements OnInit {
     'Doresc sa ma infectez LoLz',
   ];
 
+  generatePdf(){
+      const documentDefinition = { content: 'This is an sample PDF printed with pdfMake' };
+      pdfMake.createPdf(this.registerForm).open();
+     }
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
@@ -40,7 +47,6 @@ export class AppComponent implements OnInit {
             null,
             [Validators.required,
             Validators.pattern('[a-zA-Z ]*'),
-            Validators.minLength(1),
             Validators.maxLength(15)]],
       firstName: [
             null,
@@ -77,6 +83,8 @@ onSubmit(): void  {
 
     // display form values on success
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+//     console.log( JSON.stringify(this.registerForm.value.lastName, null, 4));
+    console.log('submitted');
 }
 
 onReset(): void  {

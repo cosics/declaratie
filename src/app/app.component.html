@@ -2,7 +2,7 @@
 
   <app-header></app-header>
   <br>
-  <h1>{{ datePers | uppercase }}</h1>
+  <h3>{{ datePers | uppercase }}</h3>
 
   <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
@@ -70,7 +70,7 @@
     <br><br><br>
 
     <div>
-      <button class="btn btn-primary mr-1">Register</button>
+      <button class="btn btn-primary mr-1" (click)="generatePdf()">Register</button>
       <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
   </div>
   </form>
