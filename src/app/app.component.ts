@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -16,6 +16,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  @Input() enabled = false;
   registerForm: FormGroup;
   submitted = false;
 
@@ -31,13 +32,15 @@ export class AppComponent implements OnInit {
     'Motive personale',
     'Ajutor varstnici',
     'Deplasare job',
-    'Doresc sa ma infectez LoLz',
+    'Doresc sa ma infectez',
   ];
 
   generatePdf(){
       const documentDefinition = { content: 'This is an sample PDF printed with pdfMake' };
-      pdfMake.createPdf(this.registerForm).open();
+      pdfMake.createPdf(this.registerForm.value).open();
      }
+
+     
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
@@ -82,9 +85,10 @@ onSubmit(): void  {
     }
 
     // display form values on success
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-//     console.log( JSON.stringify(this.registerForm.value.lastName, null, 4));
+    alert('SUCCESS!\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+    console.log( JSON.stringify(this.registerForm.value, null, 4));
     console.log('submitted');
+    this.generatePdf();
 }
 
 onReset(): void  {

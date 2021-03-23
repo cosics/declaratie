@@ -8,11 +8,12 @@ import {MatRadioModule} from '@angular/material/radio';
 })
 export class RadioComponent implements OnInit {
   motiv: string;
-  motiveList: string[] = ['Motive personale', 'Ajutor varstnici', 'Deplasare job', 'Doresc sa ma infectez LoLz'];
+  motiveList: string[] = ['Motive personale', 'Ajutor varstnici', 'Deplasare job', 'Doresc sa ma infectez'];
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

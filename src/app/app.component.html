@@ -1,8 +1,8 @@
- <div>
+
 
   <app-header></app-header>
-  <br>
-  <h3>{{ datePers | uppercase }}</h3>
+  <div class="wrapper">
+  <h3><strong>{{ datePers | uppercase }}</strong></h3>
 
   <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
@@ -49,8 +49,8 @@
       aria-labelledby="example-radio-group-label"
       class="example-radio-group"
       >
-      <mat-radio-button class="example-radio-button" *ngFor="let one of motiveList" [value]="one" >
-          {{one}}
+      <mat-radio-button class="example-radio-button" *ngFor="let motiv of motiveList" [value]="motiv" >
+          {{motiv}}
       </mat-radio-button>
     </mat-radio-group>
     
@@ -70,7 +70,10 @@
     <br><br><br>
 
     <div>
-      <button class="btn btn-primary mr-1" (click)="generatePdf()">Register</button>
+      <!-- <button class="btn btn-primary mr-1" (click)="generatePdf()">Register</button> -->
+      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">
+        Submit
+      </button>
       <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
   </div>
   </form>

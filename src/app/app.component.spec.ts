@@ -8,6 +8,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {By} from '@angular/platform-browser';
 
 // import { HeaderComponent } from './components/layout/header/header.component';
 // import { NumeComponent } from './components/nume/nume.component';
@@ -77,32 +78,41 @@ describe('AppComponent', () => {
     expect(app.registerForm).not.toBeTruthy();
   });
 
-  it('is form valid when empty', () => {
+
+  it('Setting enabled to false disables the submit button', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
 
-    expect(app.registerForm.valid).toBeTruthy();
+    const submitEl = fixture.debugElement.query(By.css('button'));
+    fixture.detectChanges();
+    app.enabled = true;
+    expect(submitEl.nativeElement.disabled).toBeTruthy();
   });
 
-//   fit('lastName field validity', () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     const app = fixture.componentInstance;
-    // expect(app.registerForm.lastName.valid).toBeFalsy();
 
-    // app.registerForm.value.lastName.setValue('');
-    // expect(app.registerForm.value.lastName.hasError('required')).toBeTruthy();
 
-    // app.registerForm.value.lastName.setValue('A');
-    // expect(app.registerForm.value.lastName.hasError('minLength')).toBeTruthy();
 
-    // const name = app.registerForm.controls['lastName'];
-    // expect(name.valid).toBeFalsy();
+  it('lastName field validity', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    
+    expect(app.registerForm.lastName.valid).toBeFalsy();
 
-    // let errors = {};
-    // name.setValue('');
-    // errors = name.errors || {};
-    // expect(errors['required']).toBeTruthy(); // this works
-    // expect(errors['minLength']).toBeTruthy(); // this fails, "undefined"
+    app.registerForm.value.lastName.setValue('');
+    expect(app.registerForm.value.lastName.hasError('required')).toBeTruthy();
+
+    app.registerForm.value.lastName.setValue('A');
+    expect(app.registerForm.value.lastName.hasError('minLength')).toBeTruthy();
+
+    const name = app.registerForm.controls['lastName'];
+    expect(name.valid).toBeFalsy();
+
+    let errors = {};
+    name.setValue('');
+    errors = name.errors || {};
+    expect(errors['required']).toBeTruthy(); // this works
+    expect(errors['minLength']).toBeTruthy(); // this fails, "undefined"
+});
 });
 
 
